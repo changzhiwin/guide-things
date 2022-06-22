@@ -11,11 +11,10 @@ object SparkSQLWithCaseClass {
     Person(fields(0).toInt, fields(1))
   }
 
-  def demo():Unit = {
+  def demo(): Unit = {
 
     val spark = SparkSession.builder().appName("Spark SQL").getOrCreate()
 
-    //val lines = spark.sparkContext.textFile(“../../people.csv”)
     val lines = spark.sparkContext.parallelize(Seq("23,Bob", "80,Bill", "43,Sam"))
 
     val people = lines.map(mapper)

@@ -9,14 +9,13 @@ scalaVersion := "2.13.8"
 val sparkVersion = "3.2.1"
 
 // allows us to include spark packages
-//resolvers += "bintray-spark-packages" at
-//  "https://dl.bintray.com/spark-packages/maven/"
+resolvers += "bintray-spark-packages" at "https://dl.bintray.com/spark-packages/maven/"
 
-//resolvers += "Typesafe Simple Repository" at
-//  "https://repo.typesafe.com/typesafe/simple/maven-releases/"
+resolvers += "Typesafe Simple Repository" at "https://repo.typesafe.com/typesafe/simple/maven-releases/"
 
-//resolvers += "MavenRepository" at
-//  "https://mvnrepository.com/"
+resolvers += "Apache Snapshot Repository" at "https://repository.apache.org/snapshots"
+
+resolvers += "MavenRepository" at "https://mvnrepository.com/"
 
 libraryDependencies ++= Seq(
   // spark core
@@ -35,12 +34,10 @@ libraryDependencies ++= Seq(
   // "org.scalacheck" %% "scalacheck" % "1.14.1" % "test",
 
   // logging, https://www.tutorialspoint.com/slf4j/slf4j_vs_log4j.htm
-
   "org.apache.logging.log4j" %% "log4j-api-scala" % "12.0",
   "org.apache.logging.log4j" % "log4j-api" % "2.17.2",
   "org.apache.logging.log4j" % "log4j-core" % "2.17.2" % Runtime
 )
-
 
 //////////
 ///// Databricks Settings
