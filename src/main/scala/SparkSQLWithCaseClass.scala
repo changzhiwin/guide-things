@@ -2,7 +2,9 @@ package zhiwin.spark.guide
 
 import org.apache.spark.sql._
 
-object SparkSQLWithCaseClass {
+import org.apache.logging.log4j.scala.Logging
+
+object SparkSQLWithCaseClass extends Logging {
 
   case class Person(age: Int, name: String)
 
@@ -12,6 +14,8 @@ object SparkSQLWithCaseClass {
   }
 
   def demo(): Unit = {
+
+    logger.trace("---> Enter demo()")
 
     val spark = SparkSession.builder().appName("Spark SQL").getOrCreate()
 
@@ -31,9 +35,10 @@ object SparkSQLWithCaseClass {
 
     val res = t.collect()
 
-    res.foreach(println)
+    res.foreach(r => logger.info(r))
 
     spark.stop()
+    logger.trace("<--- Leave demo()")
   }
 
 }

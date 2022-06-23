@@ -73,17 +73,13 @@ libraryDependencies ++= Seq(
 ///// END Databricks Settings
 //////////
 
-// mainClass in(Compile, packageBin) := Some("com.databricks.example.MainClass")
-//mainClass in(Compile, packageBin) := Some("zhiwin.spark.entry.MainApp")
 Compile / mainClass := Some("zhiwin.spark.guide.MainApp")
 
 // Compiler settings. Use scalac -X for other options and their description.
 // See Here for more info http://www.scala-lang.org/files/archive/nightly/docs/manual/html/scalac.html
-//scalacOptions ++= List("-feature", "-deprecation", "-unchecked", "-Xlint")
 Compile / scalacOptions ++= List("-feature", "-deprecation", "-unchecked", "-Xlint")
 
 // ScalaTest settings.
 // Ignore tests tagged as @Slow (they should be picked only by integration test)
-//testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-l",
 Test / testOptions += Tests.Argument(TestFrameworks.ScalaTest, "-l", "org.scalatest.tags.Slow", "-u", "target/junit-xml-reports", "-oD", "-eS")
 

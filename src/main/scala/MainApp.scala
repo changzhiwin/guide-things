@@ -10,14 +10,10 @@ import org.apache.logging.log4j.scala.Logging
 object MainApp extends Logging {
 
   def main(args: Array[String]) = {
-
-    val sometime = "Sometime"
     
     logger.trace("Entering application.")
-    logger.warn("I'm here.")
-    logger.info(s"${sometime}, It's works.")
-    logger.error("Did not do it.");
 
     SparkSQLWithCaseClass.demo()
+    
   }
 }
