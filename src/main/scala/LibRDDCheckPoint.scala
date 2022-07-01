@@ -36,4 +36,15 @@ object LibRDDCheckPoint extends Logging {
     joinedRDD.foreach(println)
   }
 
+  def runDF(): Unit = {
+    val spark = SparkSession.builder().appName("Spark DataFrame DAG").getOrCreate()
+
+    val srcData = Seq[(Int, Char)]((1, 'a'), (2, 'b'), (3, 'c'), (4, 'd'), (5, 'e'), (3, 'f'), (2, 'g'), (1, 'h'))
+    val inputRDD = sc.parallelize(srcData, 3)
+    val mappedRDD = inputRDD.map(r => (r._1 + 10, r._2.toString))
+
+    // Notice: have 2 jobs, some different from RDD
+    mappedRDD.toDF().groupBy("_1").agg(collect_list("_2")).show(false)
+  }
+
 }
