@@ -11,9 +11,12 @@ object MainApp extends Logging {
 
   def main(args: Array[String]) = {
     
-    logger.trace("Entering application.")
+    logger.info("------> Info, Entering application.")
+    logger.error("------> Error, Entering application.")
 
-    SparkSQLWithCaseClass.demo()
+    //SparkSQLWithCaseClass.demo()
+
+    LibRDDCheckPoint.run()
     
   }
 }

@@ -24,3 +24,16 @@ Spark log config at `SPARK_HOME/etc/log4j.properties`. Driver log shoud do it by
   // then import in the TeseCase
   import TestImplicits._
 ```
+
+## 3. spark 3.3 use log4j2, and cover Driver log level
+```
+// spark-3.2.1, log4j.rootCategory=WARN, console
+22/07/01 16:52:22 INFO MainApp$: ------> Info, Entering application.
+22/07/01 16:52:22 ERROR MainApp$: ------> Error, Entering application.
+22/07/01 16:52:22 TRACE LibRDDCheckPoint$: -------------> running...
+22/07/01 16:52:22 WARN LibRDDCheckPoint$: -------------> Warn running...
+
+// spark-3.3.0, rootLogger.level = warn
+22/07/01 16:50:31 ERROR MainApp$: ------> Error, Entering application.
+22/07/01 16:50:31 WARN LibRDDCheckPoint$: -------------> Warn running...
+```
