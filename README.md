@@ -1,3 +1,5 @@
+# What I know about spark
+![understood with spark](./understood-with-spark.png)
 # How to run
 ```
 sbt package
