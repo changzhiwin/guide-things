@@ -10,13 +10,17 @@ import org.apache.logging.log4j.scala.Logging
 object MainApp extends Logging {
 
   def main(args: Array[String]) = {
-    
-    logger.info("------> Info, Entering application.")
-    logger.error("------> Error, Entering application.")
 
-    //SparkSQLWithCaseClass.demo()
-
-    LibRDDCheckPoint.run()
+    // because Spark config set Log Level = warn
+    logger.error("---> Entering application.")
     
+    val command = if (args.length == 0) "RDD" else args(0)
+
+    command.toUpperCase match {
+      case "SQL"    => LibSQLWithCaseClass.demo()
+      case "STREAM" => LibStreaming.run()
+      case _        => LibRDDCheckPoint.run()
+    }
+
   }
 }

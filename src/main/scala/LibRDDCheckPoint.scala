@@ -2,6 +2,7 @@ package zhiwin.spark.guide
 
 import org.apache.spark.sql.SparkSession
 import org.apache.logging.log4j.scala.Logging
+import org.apache.spark.sql.functions.{ collect_list }
 
 object LibRDDCheckPoint extends Logging {
 
@@ -38,6 +39,8 @@ object LibRDDCheckPoint extends Logging {
 
   def runDF(): Unit = {
     val spark = SparkSession.builder().appName("Spark DataFrame DAG").getOrCreate()
+    val sc = spark.sparkContext
+    import spark.implicits._
 
     val srcData = Seq[(Int, Char)]((1, 'a'), (2, 'b'), (3, 'c'), (4, 'd'), (5, 'e'), (3, 'f'), (2, 'g'), (1, 'h'))
     val inputRDD = sc.parallelize(srcData, 3)
