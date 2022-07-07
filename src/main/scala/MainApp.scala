@@ -19,6 +19,7 @@ object MainApp extends Logging {
     command.toUpperCase match {
       case "SQL"    => LibSQLWithCaseClass.demo()
       case "STREAM" => LibStreaming.run()
+      case "HDFS"   => LibHdfsReadAndWrite.run()
       case _        => LibRDDCheckPoint.run()
     }
 
