@@ -3,4 +3,3 @@ target/*
 .metals/*
 .vscode/*
 .bsp/*
-data/
