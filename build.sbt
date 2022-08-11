@@ -31,7 +31,8 @@ libraryDependencies ++= Seq(
 
   // testing
   "org.scalatest" %% "scalatest" % "3.2.11" % "test",
-  // "org.scalacheck" %% "scalacheck" % "1.14.1" % "test",
+  "org.scalacheck" %% "scalacheck" % "1.15.4",
+  //"com.github.alexarchambault" %% "scalacheck-shapeless_1.15" % "1.3.0",
 
   // logging, https://www.tutorialspoint.com/slf4j/slf4j_vs_log4j.htm
   "org.apache.logging.log4j" %% "log4j-api-scala" % "12.0",
