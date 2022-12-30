@@ -6,14 +6,14 @@ version := "1.0-SNAPSHOT"
 scalaVersion := "2.13.8"
 
 // Spark Information
-val sparkVersion = "3.2.1"
+val sparkVersion = "3.3.0"
 
 // allows us to include spark packages
-resolvers += "bintray-spark-packages" at "https://dl.bintray.com/spark-packages/maven/"
+// resolvers += "bintray-spark-packages" at "https://dl.bintray.com/spark-packages/maven/"
 
-resolvers += "Typesafe Simple Repository" at "https://repo.typesafe.com/typesafe/simple/maven-releases/"
+// resolvers += "Typesafe Simple Repository" at "https://repo.typesafe.com/typesafe/simple/maven-releases/"
 
-resolvers += "Apache Snapshot Repository" at "https://repository.apache.org/snapshots"
+// resolvers += "Apache Snapshot Repository" at "https://repository.apache.org/snapshots"
 
 resolvers += "MavenRepository" at "https://mvnrepository.com/"
 

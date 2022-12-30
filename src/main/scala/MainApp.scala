@@ -12,11 +12,12 @@ object MainApp extends Logging {
   def main(args: Array[String]) = {
 
     // because Spark config set Log Level = warn
-    logger.error("---> Entering application.")
+    logger.warn("---> Entering application.")
     
     val command = if (args.length == 0) "RDD" else args(0)
 
     command.toUpperCase match {
+      case "NUM"    => FindNumber.run()
       case "SQL"    => LibSQLWithCaseClass.demo()
       case "STREAM" => LibStreaming.run()
       case "HDFS"   => LibHdfsReadAndWrite.run()
