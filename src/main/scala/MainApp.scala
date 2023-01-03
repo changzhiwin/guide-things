@@ -17,6 +17,8 @@ object MainApp extends Logging {
     val command = if (args.length == 0) "RDD" else args(0)
 
     command.toUpperCase match {
+      case "LOGIN"  => ContinueLogin.run()
+      case "BOOK"   => BookSexRatio.run()
       case "NUM"    => FindNumber.run()
       case "SQL"    => LibSQLWithCaseClass.demo()
       case "STREAM" => LibStreaming.run()
