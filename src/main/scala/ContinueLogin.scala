@@ -46,4 +46,9 @@ object ContinueLogin extends Logging {
   }
 }
 
+// 相关补充: lag/lead两个兄弟函数（排序后比较有用）
+// lag(col, offset) 获取窗口中，该行的前面offset行的值；offset=1，就是获取上一行的值
+// lead(col, offset) 获取窗口中，该行的后面offset行的值；offset=1，就是获取下一行的值
+//
+
 // Ref: https://zhuanlan.zhihu.com/p/440179932
