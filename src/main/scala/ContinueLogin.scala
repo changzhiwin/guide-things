@@ -20,7 +20,7 @@ object ContinueLogin extends Logging {
       .read.format("csv")
       .option("inferSchema", true)
       .option("header", true)
-      .load("./data/userlog.csv")
+      .load("hdfs://192.168.31.130:9000/spark/demo/userlog.csv")
 
     df.printSchema()
 
@@ -31,7 +31,7 @@ object ContinueLogin extends Logging {
     df.withColumn("loginDate", to_date(col("loginTime")))
       //.withColumn("pastDays", datediff(current_date(), col("loginDate")))
       //.filter(col("pastDays").lt(8))
-      .filter(datediff(current_date(), col("loginDate")).lt(8))
+      .filter(datediff(current_date(), col("loginDate")).lt(60))
       //.orderBy(col("userId"))      // window没有强制要求提前排序
       .withColumn("order", row_number().over(windowSpec))
       .withColumn("diffDate", date_sub(col("loginDate"), col("order")))

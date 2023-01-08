@@ -21,7 +21,7 @@ object EachKeyTopN extends Logging {
       .read.format("csv")
       .option("inferSchema", true)
       .option("header", true)
-      .load("./data/scores.csv")
+      .load("hdfs://192.168.31.130:9000/spark/demo/scores.csv")
 
     df.printSchema()
 

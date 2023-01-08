@@ -19,7 +19,7 @@ object BookSexRatio extends Logging {
     val df = spark.read.format("csv")
       .option("header", true)
       .option("inferSchema", true)
-      .load("./data/books.csv")
+      .load("hdfs://192.168.31.130:9000/spark/demo/books.csv")
 
     df.printSchema()
 
