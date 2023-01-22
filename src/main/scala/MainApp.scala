@@ -17,6 +17,7 @@ object MainApp extends Logging {
     val command = if (args.length == 0) "RDD" else args(0)
 
     command.toUpperCase match {
+      case "JOIN"   => SortMergeJoin.run()
       case "ERROR"  => CriticalErrorPeriod.run()
       case "TOPN"   => EachKeyTopN.run()
       case "LOGIN"  => ContinueLogin.run()
