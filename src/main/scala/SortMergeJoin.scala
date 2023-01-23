@@ -24,13 +24,13 @@ object SortMergeJoin extends Logging {
     import spark.implicits._
     val usersDF = (0 to 100).map(id => User(id, s"user_${id}", s"user_${id}@dod.com", states(Random.nextInt(6)))).toDF()
 
-    usersDF.show(3)
+    // usersDF.show(3)
 
     usersDF.orderBy(asc("uid")).write.format("json").bucketBy(4, "uid").mode(SaveMode.Overwrite).saveAsTable("UsersTable")
 
     val ordersDF = (0 to 100).map(r => Order(r, r, Random.nextInt(100), 10 * r * 0.2d, states(Random.nextInt(6)), items(Random.nextInt(6)))).toDF()
 
-    ordersDF.show(3)
+    // ordersDF.show(3)
 
     ordersDF.orderBy(asc("userId")).write.format("json").bucketBy(4, "userId").mode(SaveMode.Overwrite).saveAsTable("OrdersTable")
 
@@ -41,8 +41,15 @@ object SortMergeJoin extends Logging {
 
     val usersBucketDF = spark.table("UsersTable") 
     val ordersBucketDF = spark.table("OrdersTable")
+    //println(s"user partitions = ${usersBucketDF.rdd.getNumPartitions}, orders partitions = ${ordersBucketDF.rdd.getNumPartitions}")
 
-    val joinUsersOrdersBucketDF = ordersBucketDF.join(usersBucketDF, col("userId") === col("uid"))
-    joinUsersOrdersBucketDF.show(10)
+    // 验证单个分区里的key，所属集合是一致的
+    usersBucketDF.select("uid").mapPartitions(iter => Seq( Set.from(iter.map(_.getInt(0))).toSeq.sorted.mkString(",") ).iterator).foreach(s => println(s))
+    println("--------\n")
+    ordersBucketDF.select("userId").mapPartitions(iter => Seq( Set.from(iter.map(_.getInt(0))).toSeq.sorted.mkString(",") ).iterator  ).foreach(s => println(s))
+
+    //val joinUsersOrdersBucketDF = ordersBucketDF.join(usersBucketDF, col("userId") === col("uid"))
+    //println(s"joinUsersOrdersBucketDF partition = ${joinUsersOrdersBucketDF.rdd.getNumPartitions}")
+    //joinUsersOrdersBucketDF.show(10)
   }
 }
